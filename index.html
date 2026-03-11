@@ -32,7 +32,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -44,14 +43,11 @@
     overflow-x: hidden;
   }
 
-  /* Ambient background */
   body::before {
     content: '';
     position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
     background: radial-gradient(ellipse at 30% 20%, rgba(108,92,231,0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(85,239,196,0.04) 0%, transparent 50%);
     z-index: 0;
@@ -70,10 +66,8 @@
   .hero {
     text-align: center;
     padding: 60px 20px 50px;
-    position: relative;
     animation: fadeUp 0.8s ease-out;
   }
-
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -88,16 +82,13 @@
     letter-spacing: 0.5px;
     margin-bottom: 24px;
   }
-
   .hero-badge::before {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     background: var(--accent-light);
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
-
   .hero h1 {
     font-family: 'Noto Sans Thai', sans-serif;
     font-size: clamp(2rem, 5vw, 2.8rem);
@@ -109,51 +100,28 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .hero .subtitle { font-size: 1.15rem; color: var(--text-dim); }
+  .hero .subtitle strong { color: var(--accent-light); font-weight: 600; }
 
-  .hero .subtitle {
-    font-size: 1.15rem;
-    color: var(--text-dim);
-    font-weight: 400;
-  }
-
-  .hero .subtitle strong {
-    color: var(--accent-light);
-    font-weight: 600;
-  }
-
-  /* ─── Navigation Dots ─── */
+  /* ─── Nav Pills ─── */
   .nav-pills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 0 40px;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin: 0 0 40px;
     animation: fadeUp 0.8s ease-out 0.2s both;
   }
-
   .nav-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: 50px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 50px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-dim); font-size: 0.82rem; font-weight: 500;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
   }
-
   .nav-pill:hover {
     background: var(--accent-glow);
     border-color: rgba(108,92,231,0.3);
     color: var(--accent-light);
     transform: translateY(-1px);
   }
-
   .nav-pill .icon { font-size: 1rem; }
 
   /* ─── Section Card ─── */
@@ -165,113 +133,72 @@
     margin-bottom: 24px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: border-color 0.3s;
   }
-
-  .section-card:hover {
-    border-color: rgba(108,92,231,0.15);
-  }
-
+  .section-card:hover { border-color: rgba(108,92,231,0.15); }
   .section-card::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: absolute; top: 0; left: 0; right: 0;
     height: 3px;
     background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    opacity: 0;
-    transition: opacity 0.3s;
+    opacity: 0; transition: opacity 0.3s;
   }
-
-  .section-card:hover::before {
-    opacity: 1;
-  }
+  .section-card:hover::before { opacity: 1; }
 
   .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent-light);
-    margin-bottom: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--accent-light); margin-bottom: 16px;
   }
-
   .section-label .num {
     background: var(--accent-glow);
     border: 1px solid rgba(108,92,231,0.2);
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
+    width: 26px; height: 26px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
     font-family: 'JetBrains Mono', monospace;
   }
-
   .section-card h2 {
     font-family: 'Noto Sans Thai', sans-serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 1.35rem; font-weight: 700;
+    margin-bottom: 20px; line-height: 1.5;
   }
-
   .section-card p {
-    color: var(--text-dim);
-    margin-bottom: 14px;
-    font-weight: 400;
+    color: var(--text-dim); margin-bottom: 14px; font-weight: 400;
+    word-break: keep-all; overflow-wrap: anywhere;
   }
-
   .section-card p:last-child { margin-bottom: 0; }
-
   .bold { color: var(--text); font-weight: 600; }
 
   /* ─── Cause List ─── */
-  .cause-list {
-    list-style: none;
-    margin: 16px 0;
-  }
-
+  .cause-list { list-style: none; margin: 16px 0; }
   .cause-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 16px;
+    padding: 14px 16px 14px 32px;
     margin-bottom: 8px;
     background: var(--surface2);
     border-radius: var(--radius-sm);
     color: var(--text-dim);
     font-size: 0.95rem;
     transition: background 0.2s;
+    position: relative;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-
-  .cause-list li:hover {
-    background: var(--surface3);
-  }
-
+  .cause-list li:hover { background: var(--surface3); }
   .cause-list li::before {
-    content: '›';
+    content: '\203A';
     color: var(--accent-light);
-    font-weight: 700;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    flex-shrink: 0;
+    font-weight: 700; font-size: 1.2rem;
+    position: absolute; left: 14px; top: 12px;
   }
 
   /* ─── Grade Cards ─── */
   .grade-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 20px 0;
+    gap: 12px; margin: 20px 0;
   }
-
   .grade-card {
     text-align: center;
     padding: 20px 12px;
@@ -279,33 +206,19 @@
     border: 1px solid var(--border);
     transition: transform 0.3s, border-color 0.3s;
   }
-
-  .grade-card:hover {
-    transform: translateY(-3px);
-  }
-
+  .grade-card:hover { transform: translateY(-3px); }
   .grade-card .letter {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 6px;
+    font-size: 2rem; font-weight: 700;
+    line-height: 1; margin-bottom: 6px;
   }
-
-  .grade-card .desc {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
+  .grade-card .desc { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
   .grade-d { background: rgba(116,185,255,0.06); border-color: rgba(116,185,255,0.15); }
   .grade-d .letter { color: var(--grade-d); }
   .grade-d:hover { border-color: rgba(116,185,255,0.4); }
-
   .grade-dplus { background: rgba(162,155,254,0.06); border-color: rgba(162,155,254,0.15); }
   .grade-dplus .letter { color: var(--grade-dplus); }
   .grade-dplus:hover { border-color: rgba(162,155,254,0.4); }
-
   .grade-c { background: rgba(85,239,196,0.06); border-color: rgba(85,239,196,0.15); }
   .grade-c .letter { color: var(--grade-c); }
   .grade-c:hover { border-color: rgba(85,239,196,0.4); }
@@ -318,31 +231,15 @@
     font-size: 0.92rem;
     line-height: 1.8;
     border-left: 3px solid;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-
-  .info-box.note {
-    background: var(--warning-bg);
-    border-color: var(--warning);
-    color: #f0dba8;
-  }
-
-  .info-box.important {
-    background: var(--danger-bg);
-    border-color: var(--danger);
-    color: #f0aaaa;
-  }
-
-  .info-box.success {
-    background: var(--success-bg);
-    border-color: var(--success);
-    color: #a0e8d0;
-  }
-
+  .info-box.note { background: var(--warning-bg); border-color: var(--warning); color: #f0dba8; }
+  .info-box.important { background: var(--danger-bg); border-color: var(--danger); color: #f0aaaa; }
+  .info-box.success { background: var(--success-bg); border-color: var(--success); color: #a0e8d0; }
   .info-box .box-title {
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     margin-bottom: 8px;
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -350,147 +247,98 @@
   }
 
   /* ─── Steps ─── */
-  .step-list {
-    list-style: none;
-    margin: 20px 0;
-    counter-reset: step;
-  }
-
+  .step-list { list-style: none; margin: 20px 0; counter-reset: step; }
   .step-list > li {
     counter-increment: step;
-    display: flex;
-    gap: 16px;
-    padding: 16px;
+    padding: 16px 16px 16px 52px;
     margin-bottom: 10px;
     background: var(--surface2);
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
     transition: border-color 0.2s;
+    position: relative;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-
-  .step-list > li:hover {
-    border-color: rgba(108,92,231,0.2);
-  }
-
+  .step-list > li:hover { border-color: rgba(108,92,231,0.2); }
   .step-list > li::before {
     content: counter(step);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.8rem; font-weight: 700;
     color: var(--accent-light);
     background: var(--accent-glow);
     border: 1px solid rgba(108,92,231,0.2);
-    min-width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; left: 14px; top: 16px;
   }
-
-  .step-content {
-    color: var(--text-dim);
-  }
-
+  .step-content { color: var(--text-dim); }
   .step-content .bold { color: var(--text); }
 
   /* ─── Checklist ─── */
-  .checklist {
-    list-style: none;
-    margin: 16px 0;
-  }
-
+  .checklist { list-style: none; margin: 16px 0; }
   .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 16px;
+    padding: 12px 16px 12px 38px;
     margin-bottom: 6px;
     border-radius: var(--radius-sm);
     color: var(--text-dim);
     font-size: 0.95rem;
     background: var(--surface2);
+    position: relative;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-
   .checklist li .check {
     color: var(--success);
     font-size: 1rem;
-    flex-shrink: 0;
-    margin-top: 4px;
+    position: absolute;
+    left: 14px; top: 12px;
   }
 
-  /* ─── Result Display Items ─── */
-  .result-items {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 16px 0;
-  }
-
+  /* ─── Result Items ─── */
+  .result-items { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
   .result-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    padding: 10px 18px;
-    border-radius: 50px;
-    font-size: 0.88rem;
-    color: var(--text-dim);
+    padding: 10px 18px; border-radius: 50px;
+    font-size: 0.88rem; color: var(--text-dim);
   }
-
   .result-item .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 8px; height: 8px; border-radius: 50%;
     background: var(--accent-light);
   }
 
-  /* ─── Grammar Topics Grid ─── */
+  /* ─── Topic Grid ─── */
   .topic-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 8px;
-    margin: 20px 0;
+    gap: 8px; margin: 20px 0;
   }
-
   .topic-chip {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     padding: 12px 16px;
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    font-size: 0.88rem;
-    color: var(--text-dim);
+    font-size: 0.88rem; color: var(--text-dim);
     transition: all 0.25s;
   }
-
   .topic-chip:hover {
     background: var(--accent-glow);
     border-color: rgba(108,92,231,0.25);
     color: var(--accent-light);
     transform: translateX(4px);
   }
-
   .topic-chip .bullet {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
   }
 
   /* ─── Email Link ─── */
   .email-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent-light);
-    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--accent-light); font-weight: 600;
     text-decoration: none;
     padding: 8px 20px;
     background: var(--accent-glow);
@@ -499,45 +347,33 @@
     transition: all 0.3s;
     font-size: 0.92rem;
   }
-
   .email-link:hover {
     background: rgba(108,92,231,0.2);
     border-color: rgba(108,92,231,0.4);
     transform: translateY(-1px);
   }
 
-  /* ─── Divider ─── */
+  /* ─── Misc ─── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border), transparent);
     margin: 20px 0;
   }
-
-  /* ─── Footer ─── */
   .footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-muted);
-    font-size: 0.82rem;
+    text-align: center; padding: 40px 20px;
+    color: var(--text-muted); font-size: 0.82rem;
   }
 
-  /* ─── Scroll Animations ─── */
+  /* ─── Animations ─── */
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
+    opacity: 0; transform: translateY(24px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
@@ -545,14 +381,23 @@
 
   /* ─── Responsive ─── */
   @media (max-width: 600px) {
-    .wrapper { padding: 12px 14px 60px; }
+    .wrapper { padding: 12px 12px 60px; }
     .hero { padding: 40px 10px 36px; }
-    .section-card { padding: 26px 20px; }
-    .grade-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .section-card { padding: 24px 16px; }
+    .grade-row { gap: 8px; }
     .grade-card { padding: 14px 8px; }
     .grade-card .letter { font-size: 1.5rem; }
     .topic-grid { grid-template-columns: 1fr; }
     .result-items { flex-direction: column; }
+    .cause-list li { padding: 12px 14px 12px 30px; font-size: 0.9rem; }
+    .cause-list li::before { left: 12px; top: 11px; }
+    .checklist li { padding: 12px 14px 12px 36px; font-size: 0.9rem; }
+    .checklist li .check { left: 12px; top: 12px; }
+    .step-list > li { padding: 14px 14px 14px 48px; }
+    .step-list > li::before { left: 12px; top: 14px; }
+    .info-box { padding: 16px 16px; font-size: 0.88rem; }
+    .nav-pills { gap: 6px; }
+    .nav-pill { padding: 7px 12px; font-size: 0.78rem; }
   }
 </style>
 </head>
@@ -575,7 +420,7 @@
     <a href="#topics" class="nav-pill"><span class="icon">📚</span> หัวข้อไวยากรณ์</a>
   </nav>
 
-  <!-- Section 1: คำชี้แจงเบื้องต้น -->
+  <!-- ═══ Section 1: คำชี้แจงเบื้องต้น ═══ -->
   <section id="intro" class="section-card reveal">
     <div class="section-label"><span class="num">1</span> คำชี้แจงเบื้องต้น</div>
     <h2>ทำไมนิสิตถึงได้รับเกรด I?</h2>
@@ -619,7 +464,7 @@
     </div>
   </section>
 
-  <!-- Section 2: วิธีทำแบบฝึกหัด -->
+  <!-- ═══ Section 2: วิธีทำแบบฝึกหัด ═══ -->
   <section id="howto" class="section-card reveal">
     <div class="section-label"><span class="num">2</span> วิธีการ</div>
     <h2>วิธีทำแบบฝึกหัดเพื่อได้เกรด D หรือ D+</h2>
@@ -651,7 +496,7 @@
     </div>
   </section>
 
-  <!-- Section 3: เงื่อนไขเกรด C -->
+  <!-- ═══ Section 3: เงื่อนไขเกรด C ═══ -->
   <section id="grade-c" class="section-card reveal">
     <div class="section-label"><span class="num">3</span> เงื่อนไขพิเศษ</div>
     <h2>เงื่อนไขเพิ่มเติมสำหรับผู้ที่ต้องการเกรด C</h2>
@@ -701,7 +546,7 @@
     </div>
   </section>
 
-  <!-- Section 4: หัวข้อไวยากรณ์ -->
+  <!-- ═══ Section 4: หัวข้อไวยากรณ์ ═══ -->
   <section id="topics" class="section-card reveal">
     <div class="section-label"><span class="num">4</span> หัวข้อ</div>
     <h2>ตัวอย่างหัวข้อไวยากรณ์ที่สามารถเลือกทำวิดีโอนำเสนอ</h2>
@@ -741,32 +586,36 @@
 </div>
 
 <script>
-  // Scroll-triggered reveal animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  // Scroll-triggered reveal
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
 
-  // Smooth nav pill active state
-  const sections = document.querySelectorAll('section[id]');
-  const pills = document.querySelectorAll('.nav-pill');
+  // Nav pill active state on scroll
+  var allSections = document.querySelectorAll('section[id]');
+  var allPills = document.querySelectorAll('.nav-pill');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const top = section.offsetTop - 120;
-      if (pageYOffset >= top) current = section.getAttribute('id');
+  window.addEventListener('scroll', function() {
+    var current = '';
+    allSections.forEach(function(section) {
+      var top = section.offsetTop - 120;
+      if (window.pageYOffset >= top) {
+        current = section.getAttribute('id');
+      }
     });
-    pills.forEach(pill => {
-      pill.style.background = pill.getAttribute('href') === '#' + current
-        ? 'var(--accent-glow)' : '';
-      pill.style.color = pill.getAttribute('href') === '#' + current
-        ? 'var(--accent-light)' : '';
+    allPills.forEach(function(pill) {
+      var isActive = pill.getAttribute('href') === '#' + current;
+      pill.style.background = isActive ? 'var(--accent-glow)' : '';
+      pill.style.color = isActive ? 'var(--accent-light)' : '';
+      pill.style.borderColor = isActive ? 'rgba(108,92,231,0.3)' : '';
     });
   });
 </script>
