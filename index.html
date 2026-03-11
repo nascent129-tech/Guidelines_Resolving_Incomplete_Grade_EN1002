@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คำชี้แจงการแก้เกรด I — EN1002</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181a23;
+    --surface2: #1e2130;
+    --surface3: #252840;
+    --border: rgba(255,255,255,0.06);
+    --text: #e8e9ed;
+    --text-dim: #9a9db5;
+    --text-muted: #6b6e85;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --accent-glow: rgba(108,92,231,0.15);
+    --warning: #fdcb6e;
+    --warning-bg: rgba(253,203,110,0.08);
+    --success: #55efc4;
+    --success-bg: rgba(85,239,196,0.08);
+    --danger: #ff7675;
+    --danger-bg: rgba(255,118,117,0.08);
+    --grade-d: #74b9ff;
+    --grade-dplus: #a29bfe;
+    --grade-c: #55efc4;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans Thai', 'Noto Sans Thai', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(108,92,231,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(85,239,196,0.04) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+    animation: fadeUp 0.8s ease-out;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(108,92,231,0.2);
+    color: var(--accent-light);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .hero .subtitle strong {
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  /* ─── Navigation Dots ─── */
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 40px;
+    animation: fadeUp 0.8s ease-out 0.2s both;
+  }
+
+  .nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .nav-pill:hover {
+    background: var(--accent-glow);
+    border-color: rgba(108,92,231,0.3);
+    color: var(--accent-light);
+    transform: translateY(-1px);
+  }
+
+  .nav-pill .icon { font-size: 1rem; }
+
+  /* ─── Section Card ─── */
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .section-card:hover {
+    border-color: rgba(108,92,231,0.15);
+  }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .section-card:hover::before {
+    opacity: 1;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+  }
+
+  .section-label .num {
+    background: var(--accent-glow);
+    border: 1px solid rgba(108,92,231,0.2);
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .section-card h2 {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .section-card p {
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+
+  .section-card p:last-child { margin-bottom: 0; }
+
+  .bold { color: var(--text); font-weight: 600; }
+
+  /* ─── Cause List ─── */
+  .cause-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .cause-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+
+  .cause-list li:hover {
+    background: var(--surface3);
+  }
+
+  .cause-list li::before {
+    content: '›';
+    color: var(--accent-light);
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+
+  /* ─── Grade Cards ─── */
+  .grade-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .grade-card {
+    text-align: center;
+    padding: 20px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .grade-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .grade-card .letter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .grade-card .desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .grade-d { background: rgba(116,185,255,0.06); border-color: rgba(116,185,255,0.15); }
+  .grade-d .letter { color: var(--grade-d); }
+  .grade-d:hover { border-color: rgba(116,185,255,0.4); }
+
+  .grade-dplus { background: rgba(162,155,254,0.06); border-color: rgba(162,155,254,0.15); }
+  .grade-dplus .letter { color: var(--grade-dplus); }
+  .grade-dplus:hover { border-color: rgba(162,155,254,0.4); }
+
+  .grade-c { background: rgba(85,239,196,0.06); border-color: rgba(85,239,196,0.15); }
+  .grade-c .letter { color: var(--grade-c); }
+  .grade-c:hover { border-color: rgba(85,239,196,0.4); }
+
+  /* ─── Info Box ─── */
+  .info-box {
+    padding: 20px 24px;
+    border-radius: var(--radius-sm);
+    margin: 20px 0;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    border-left: 3px solid;
+  }
+
+  .info-box.note {
+    background: var(--warning-bg);
+    border-color: var(--warning);
+    color: #f0dba8;
+  }
+
+  .info-box.important {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+    color: #f0aaaa;
+  }
+
+  .info-box.success {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #a0e8d0;
+  }
+
+  .info-box .box-title {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── Steps ─── */
+  .step-list {
+    list-style: none;
+    margin: 20px 0;
+    counter-reset: step;
+  }
+
+  .step-list > li {
+    counter-increment: step;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 10px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .step-list > li:hover {
+    border-color: rgba(108,92,231,0.2);
+  }
+
+  .step-list > li::before {
+    content: counter(step);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    background: var(--accent-glow);
+    border: 1px solid rgba(108,92,231,0.2);
+    min-width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content {
+    color: var(--text-dim);
+  }
+
+  .step-content .bold { color: var(--text); }
+
+  /* ─── Checklist ─── */
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 16px;
+    margin-bottom: 6px;
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    background: var(--surface2);
+  }
+
+  .checklist li .check {
+    color: var(--success);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  /* ─── Result Display Items ─── */
+  .result-items {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+  }
+
+  .result-item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-light);
+  }
+
+  /* ─── Grammar Topics Grid ─── */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  .topic-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    transition: all 0.25s;
+  }
+
+  .topic-chip:hover {
+    background: var(--accent-glow);
+    border-color: rgba(108,92,231,0.25);
+    color: var(--accent-light);
+    transform: translateX(4px);
+  }
+
+  .topic-chip .bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ─── Email Link ─── */
+  .email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-light);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 20px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(108,92,231,0.2);
+    border-radius: 50px;
+    transition: all 0.3s;
+    font-size: 0.92rem;
+  }
+
+  .email-link:hover {
+    background: rgba(108,92,231,0.2);
+    border-color: rgba(108,92,231,0.4);
+    transform: translateY(-1px);
+  }
+
+  /* ─── Divider ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 20px 0;
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
+  /* ─── Scroll Animations ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    .wrapper { padding: 12px 14px 60px; }
+    .hero { padding: 40px 10px 36px; }
+    .section-card { padding: 26px 20px; }
+    .grade-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .grade-card { padding: 14px 8px; }
+    .grade-card .letter { font-size: 1.5rem; }
+    .topic-grid { grid-template-columns: 1fr; }
+    .result-items { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-badge">EN1002 — GRADE I CORRECTION</div>
+    <h1>คำชี้แจงการแก้เกรด I</h1>
+    <p class="subtitle">รายวิชา <strong>EN1002</strong></p>
+  </header>
+
+  <!-- Quick Nav -->
+  <nav class="nav-pills">
+    <a href="#intro" class="nav-pill"><span class="icon">📋</span> คำชี้แจงเบื้องต้น</a>
+    <a href="#howto" class="nav-pill"><span class="icon">✏️</span> วิธีทำแบบฝึกหัด</a>
+    <a href="#grade-c" class="nav-pill"><span class="icon">🎯</span> เงื่อนไขเกรด C</a>
+    <a href="#topics" class="nav-pill"><span class="icon">📚</span> หัวข้อไวยากรณ์</a>
+  </nav>
+
+  <!-- Section 1: คำชี้แจงเบื้องต้น -->
+  <section id="intro" class="section-card reveal">
+    <div class="section-label"><span class="num">1</span> คำชี้แจงเบื้องต้น</div>
+    <h2>ทำไมนิสิตถึงได้รับเกรด I?</h2>
+
+    <p>นิสิตที่ได้รับ <span class="bold">เกรด I (Incomplete)</span> ในรายวิชานี้ มีสาเหตุมาจาก <span class="bold">คะแนนรวมทั้งหมด (คะแนนเก็บและคะแนนสอบ) ยังไม่ถึงเกณฑ์ผ่านรายวิชา</span></p>
+
+    <p>สาเหตุอาจเกิดจากหลายปัจจัย เช่น</p>
+
+    <ul class="cause-list">
+      <li>ไม่ได้เข้าเรียนวิดีโอครบ <span class="bold">15 บท</span> จึงไม่มีคะแนนเก็บในส่วนนั้น</li>
+      <li>ไม่ได้ทำ <span class="bold">Pre-test / Post-test</span> ครบทุกบท</li>
+      <li>ไม่ได้เข้าเรียน <span class="bold">คลาสสดทั้ง 3 ครั้ง</span> หรือไม่ได้เรียนย้อนหลัง</li>
+      <li>หรือมี <span class="bold">คะแนนสอบค่อนข้างน้อย</span> เมื่อรวมกับคะแนนเก็บที่มีอยู่ คะแนนรวมจึงยังไม่ถึงเกณฑ์ผ่าน</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <p>เพื่อเปิดโอกาสให้นิสิต <span class="bold">สามารถผ่านรายวิชาได้โดยไม่ต้องได้รับเกรด F และไม่ต้องลงทะเบียนเรียนใหม่</span></p>
+    <p>อาจารย์จึงเปิดโอกาสให้นิสิตที่ได้รับเกรด I สามารถ <span class="bold">ทำคะแนนเพิ่มเติมเพื่อให้ถึงเกณฑ์ผ่าน</span></p>
+
+    <p>เกรดที่สามารถได้รับจากการแก้เกรดครั้งนี้ ได้แก่</p>
+
+    <div class="grade-row">
+      <div class="grade-card grade-d">
+        <div class="letter">D</div>
+        <div class="desc">ระดับพื้นฐาน</div>
+      </div>
+      <div class="grade-card grade-dplus">
+        <div class="letter">D+</div>
+        <div class="desc">ระดับกลาง</div>
+      </div>
+      <div class="grade-card grade-c">
+        <div class="letter">C</div>
+        <div class="desc">ระดับสูงสุด</div>
+      </div>
+    </div>
+
+    <div class="info-box note">
+      <div class="box-title">📌 สำคัญ</div>
+      ทั้งนี้ เกรดที่นิสิตจะสามารถแก้ได้ <strong>ขึ้นอยู่กับคะแนนเดิมของแต่ละคน</strong> ดังนั้นขอให้นิสิต <strong>ตรวจสอบคะแนนของตนเองก่อน</strong> เพื่อดูว่าต้องทำคะแนนเพิ่มอีกเท่าใด
+    </div>
+  </section>
+
+  <!-- Section 2: วิธีทำแบบฝึกหัด -->
+  <section id="howto" class="section-card reveal">
+    <div class="section-label"><span class="num">2</span> วิธีการ</div>
+    <h2>วิธีทำแบบฝึกหัดเพื่อได้เกรด D หรือ D+</h2>
+
+    <p>นิสิตส่วนใหญ่จะสามารถแก้เกรดได้ในระดับ <span class="bold">D</span> หรือ <span class="bold">D+</span> โดยการทำ <span class="bold">แบบฝึกหัดที่จัดเตรียมไว้ให้</span> <span class="bold">(จะมีลิงก์ให้เข้าทำแบบฝึกหัด โดยอาจารย์จะส่งลิงก์ลงในกลุ่มไลน์)</span></p>
+
+    <p>แบบฝึกหัดในระบบมีจำนวนหลายข้อ และนิสิต <span class="bold">ไม่จำเป็นต้องทำทุกข้อ</span> แต่ต้องทำให้ได้จำนวนข้อถูก <span class="bold">ตามคะแนนที่อาจารย์แจ้งสำหรับแต่ละคน</span></p>
+
+    <p>นิสิตสามารถทำแบบฝึกหัด <span class="bold">มากกว่าจำนวนขั้นต่ำ</span></p>
+
+    <div class="divider"></div>
+
+    <p>เมื่อทำแบบฝึกหัดเสร็จ ระบบจะแสดง</p>
+
+    <div class="result-items">
+      <div class="result-item"><span class="dot"></span> ชื่อ–สกุล</div>
+      <div class="result-item"><span class="dot"></span> รหัสนิสิต</div>
+      <div class="result-item"><span class="dot"></span> คะแนนที่ทำได้</div>
+    </div>
+
+    <div class="info-box important">
+      <div class="box-title">⚠️ ขั้นตอนสำคัญ</div>
+      กรุณา <strong>แคปหน้าจอผลคะแนนเป็นหลักฐาน</strong> และนำภาพหน้าจอ <strong>ส่งในกลุ่ม Line สำหรับแก้เกรด I</strong> นี้
+    </div>
+
+    <div class="info-box note">
+      <div class="box-title">📝 หมายเหตุ</div>
+      ระบบจะบันทึกและส่งผลคะแนนการทำแบบฝึกหัดเข้าสู่ระบบหลังบ้านของอาจารย์โดยอัตโนมัติ อาจารย์จึงสามารถตรวจสอบได้ว่านิสิตได้เข้าทำแบบฝึกหัดและได้คะแนนเท่าใด โดยจะยึดข้อมูลจากระบบเป็นหลัก ไม่ได้พิจารณาจากภาพแคปหน้าจอเพียงอย่างเดียว
+    </div>
+  </section>
+
+  <!-- Section 3: เงื่อนไขเกรด C -->
+  <section id="grade-c" class="section-card reveal">
+    <div class="section-label"><span class="num">3</span> เงื่อนไขพิเศษ</div>
+    <h2>เงื่อนไขเพิ่มเติมสำหรับผู้ที่ต้องการเกรด C</h2>
+
+    <p>สำหรับนิสิตที่มี <span class="bold">คะแนนเดิมค่อนข้างสูงและใกล้ถึงเกณฑ์ผ่านอยู่แล้ว</span> อาจมีโอกาสแก้เกรดได้ถึงระดับ <span class="bold">C</span></p>
+
+    <p>อย่างไรก็ตาม การได้เกรด C <span class="bold">ไม่สามารถใช้การทำแบบฝึกหัดเพียงอย่างเดียวได้</span></p>
+
+    <p>นิสิตจะต้องดำเนินการดังนี้</p>
+
+    <ol class="step-list">
+      <li>
+        <div class="step-content">
+          ต้องทำแบบฝึกหัดให้ได้คะแนน <span class="bold">อย่างน้อยในระดับ D+ ก่อน</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          จัดทำ <span class="bold">วิดีโออธิบายหลักไวยากรณ์ภาษาอังกฤษ 1 หัวข้อ</span> จากเนื้อหาที่เรียนในรายวิชานี้
+        </div>
+      </li>
+    </ol>
+
+    <div class="divider"></div>
+
+    <p style="font-weight:600; color: var(--text); margin-bottom: 16px;">เงื่อนไขของวิดีโอ</p>
+
+    <ul class="checklist">
+      <li><span class="check">✓</span> ต้องเป็น <span class="bold">การอธิบายด้วยเสียงของตนเอง</span></li>
+      <li><span class="check">✓</span> ต้อง <span class="bold">เปิดกล้องขณะอธิบาย</span></li>
+      <li><span class="check">✓</span> ต้องมี <span class="bold">สื่อประกอบการอธิบาย</span> เช่น สไลด์ เอกสาร หรือ ตัวอย่างประโยค</li>
+      <li><span class="check">✓</span> ความยาววิดีโอ <span class="bold">ไม่น้อยกว่า 3 นาที</span></li>
+      <li><span class="check">✓</span> วิดีโอควรแสดงให้เห็นว่านิสิต <span class="bold">เข้าใจหลักไวยากรณ์และสามารถอธิบายให้ผู้อื่นเข้าใจได้</span></li>
+    </ul>
+
+    <div class="info-box important">
+      <div class="box-title">⚠️ โปรดทราบ</div>
+      ทั้งนี้ <strong>การส่งวิดีโอไม่ได้รับประกันว่าจะได้เกรด C</strong><br>
+      อาจารย์จะพิจารณาจาก <strong>ความถูกต้อง ความครบถ้วน และคุณภาพของการอธิบาย</strong>อีกครั้ง
+    </div>
+
+    <p>โดยจัดส่งงานที่ อีเมล</p>
+    <div style="margin-top: 10px;">
+      <a href="mailto:bupha.ra@western.ac.th" class="email-link">
+        ✉️ bupha.ra@western.ac.th
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 4: หัวข้อไวยากรณ์ -->
+  <section id="topics" class="section-card reveal">
+    <div class="section-label"><span class="num">4</span> หัวข้อ</div>
+    <h2>ตัวอย่างหัวข้อไวยากรณ์ที่สามารถเลือกทำวิดีโอนำเสนอ</h2>
+
+    <p>นิสิตสามารถเลือก <span class="bold">หัวข้อไวยากรณ์ภาษาอังกฤษ 1 หัวข้อ</span> จากเนื้อหาที่เรียนในรายวิชานี้ เช่น</p>
+
+    <div class="topic-grid">
+      <div class="topic-chip"><span class="bullet"></span> Present Simple (รูปประโยคบอกเล่า)</div>
+      <div class="topic-chip"><span class="bullet"></span> Present Simple (ประโยคปฏิเสธ / Questions)</div>
+      <div class="topic-chip"><span class="bullet"></span> Adverbs of Frequency และ Question Words</div>
+      <div class="topic-chip"><span class="bullet"></span> There is / There are, some, any, much, many</div>
+      <div class="topic-chip"><span class="bullet"></span> Present Continuous</div>
+      <div class="topic-chip"><span class="bullet"></span> Present Simple vs. Present Continuous</div>
+      <div class="topic-chip"><span class="bullet"></span> Comparative Adjectives</div>
+      <div class="topic-chip"><span class="bullet"></span> Superlative Adjectives</div>
+      <div class="topic-chip"><span class="bullet"></span> Past Simple (Regular Verbs)</div>
+      <div class="topic-chip"><span class="bullet"></span> Past Simple (Irregular Verbs)</div>
+      <div class="topic-chip"><span class="bullet"></span> Past Simple (be และ can)</div>
+      <div class="topic-chip"><span class="bullet"></span> Past Simple (Negative / Questions)</div>
+      <div class="topic-chip"><span class="bullet"></span> Be Going To</div>
+      <div class="topic-chip"><span class="bullet"></span> Will</div>
+      <div class="topic-chip"><span class="bullet"></span> Present Perfect</div>
+    </div>
+
+    <div class="info-box success">
+      <div class="box-title">💡 เลือกได้อิสระ</div>
+      ทั้งนี้ นิสิตสามารถเลือก <strong>หัวข้ออื่นที่อยู่ในเนื้อหาของรายวิชานี้</strong> ได้เช่นกัน หากต้องการอธิบายในมุมที่แตกต่างหรือเจาะลึกมากขึ้น
+    </div>
+
+    <p>ในวิดีโอควรมีการอธิบายโครงสร้างทางไวยากรณ์ ตัวอย่างประโยค และการใช้งานในสถานการณ์จริง เพื่อแสดงให้เห็นว่านิสิตมีความเข้าใจเนื้อหาอย่างชัดเจน</p>
+  </section>
+
+  <footer class="footer">
+    คำชี้แจงการแก้เกรด I — รายวิชา EN1002
+  </footer>
+
+</div>
+
+<script>
+  // Scroll-triggered reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth nav pill active state
+  const sections = document.querySelectorAll('section[id]');
+  const pills = document.querySelectorAll('.nav-pill');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 120;
+      if (pageYOffset >= top) current = section.getAttribute('id');
+    });
+    pills.forEach(pill => {
+      pill.style.background = pill.getAttribute('href') === '#' + current
+        ? 'var(--accent-glow)' : '';
+      pill.style.color = pill.getAttribute('href') === '#' + current
+        ? 'var(--accent-light)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
